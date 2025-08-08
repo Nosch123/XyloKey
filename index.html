@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KEY DISPLAY</title>
+  <style>
+    :root{
+      --bg-1: #04102a; /* sehr dunkelblau */
+      --bg-2: #072744; /* mittel dunkelblau */
+      --card: #0f2a4a; /* kastenfarbe */
+      --accent: #79a7ff; /* leichte highlight-farbe */
+      --glass: rgba(255,255,255,0.03);
+      --text: #eaf2ff;
+    }
+
+    /* Reset + Grund */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(9,30,60,0.6), transparent 5%),
+                  linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      gap:20px;
+      min-height:100vh;
+    }
+
+    /* Subtiles hintergrundmuster */
+    .bg-pattern{
+      position:fixed;
+      inset:0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02) 0px, transparent 2px),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01) 0px, transparent 2px);
+      pointer-events:none;
+      mix-blend-mode:overlay;
+      z-index:0;
+    }
+
+    /* Container fürs Kästchen */
+    .card-wrap{
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      max-width:760px;
+      padding:28px;
+    }
+
+    .card{
+      width:100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:38px 36px;
+      box-shadow:
+        0 30px 60px rgba(2,12,27,0.65), /* tiefer, dunkler schatten für "abheben" */
+        0 6px 18px rgba(7,39,68,0.55);
+      border: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px) saturate(120%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      text-align:center;
+    }
+
+    .label{
+      font-size:20px;
+      letter-spacing:3px;
+      color:var(--accent);
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    .key{
+      font-family: "Courier New", Courier, monospace;
+      font-size:28px;
+      letter-spacing:2px;
+      background: linear-gradient(90deg, #cfe3ff, #b6d0ff 50%, #7ea9ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight:800;
+      padding:6px 12px;
+      border-radius:8px;
+    }
+
+    .sub{
+      margin-top:6px;
+      font-size:13px;
+      color:rgba(234,242,255,0.6);
+    }
+
+    /* Button zum Kopieren (optional) */
+    .btn{
+      margin-top:10px;
+      border:0;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:700;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      color:var(--text);
+      transition:transform .12s ease, box-shadow .12s ease;
+      box-shadow: 0 6px 14px rgba(2,12,27,0.55);
+      user-select:none;
+    }
+    .btn:active{transform:translateY(1px) scale(.998)}
+    .note{
+      font-size:12px;
+      color:rgba(234,242,255,0.45);
+      margin-top:8px;
+    }
+
+    /* Responsive */
+    @media (max-width:420px){
+      .card{padding:24px;border-radius:14px}
+      .key{font-size:20px}
+      .label{font-size:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <main class="card-wrap" role="main" aria-labelledby="key-title">
+    <section class="card" aria-live="polite">
+      <div class="label" id="key-title">KEY IS:</div>
+      <div class="key" id="the-key">NOTUSINGLINKVERTISE</div>
+
+      <button class="btn" id="copyBtn" title="Kopieren">KOPIEREN</button>
+      <div class="note" id="copyNote" aria-hidden="true">Klicke auf "KOPIEREN", um den Key in die Zwischenablage zu legen.</div>
+    </section>
+  </main>
+
+  <script>
+    // Copy-to-clipboard Logik (funktioniert lokal im Browser)
+    const copyBtn = document.getElementById('copyBtn');
+    const theKey = document.getElementById('the-key').innerText;
+    const copyNote = document.getElementById('copyNote');
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(theKey);
+        copyBtn.innerText = 'KOPIERT ✓';
+        copyNote.innerText = 'Key wurde in die Zwischenablage kopiert.';
+        setTimeout(() => { copyBtn.innerText = 'KOPIEREN'; copyNote.innerText = 'Klicke auf "KOPIEREN", um den Key in die Zwischenablage zu legen.'; }, 2000);
+      } catch (e) {
+        copyNote.innerText = 'Kopieren nicht möglich — markiere und kopiere manuell.';
+      }
+    });
+  </script>
+</body>
+</html>
