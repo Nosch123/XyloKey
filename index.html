@@ -152,7 +152,7 @@
         await navigator.clipboard.writeText(theKey);
         copyBtn.innerText = 'KOPIERT ✓';
         copyNote.innerText = 'Key wurde in die Zwischenablage kopiert.';
-        setTimeout(() => { copyBtn.innerText = 'KOPIEREN'; copyNote.innerText = 'Klicke auf "KOPIEREN", um den Key in die Zwischenablage zu legen.'; }, 2000);
+        setTimeout(() => { copyBtn.innerText = 'COPY'; copyNote.innerText = 'Click on “COPY” to place the key in the clipboard.'; }, 2000);
       } catch (e) {
         copyNote.innerText = 'Kopieren nicht möglich — markiere und kopiere manuell.';
       }
@@ -160,3 +160,4 @@
   </script>
 </body>
 </html>
+
