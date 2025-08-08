@@ -161,8 +161,8 @@
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(theKey);
-        copyBtn.innerText = 'KOPIERT ✓';
-        copyNote.innerText = 'Key wurde in die Zwischenablage kopiert.';
+        copyBtn.innerText = 'COPIED ✓';
+        copyNote.innerText = 'Key has been copied to the clipboard.';
         setTimeout(() => { copyBtn.innerText = 'COPY'; copyNote.innerText = 'Click on “COPY” to place the key in the clipboard.'; }, 2000);
       } catch (e) {
         copyNote.innerText = 'Kopieren nicht möglich — markiere und kopiere manuell.';
@@ -171,4 +171,5 @@
   </script>
 </body>
 </html>
+
 
