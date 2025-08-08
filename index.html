@@ -56,12 +56,13 @@
     }
 
     .card{
+      position: relative; /* für Glow-Shadow */
       width:100%;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:18px;
       padding:38px 36px;
       box-shadow:
-        0 30px 60px rgba(2,12,27,0.65), /* tiefer, dunkler schatten für "abheben" */
+        0 30px 60px rgba(2,12,27,0.65),
         0 6px 18px rgba(7,39,68,0.55);
       border: 1px solid rgba(255,255,255,0.03);
       backdrop-filter: blur(6px) saturate(120%);
@@ -70,6 +71,16 @@
       align-items:center;
       gap:18px;
       text-align:center;
+
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 20px 6px rgba(121, 167, 255, 0.6), /* blauer Glow */
+        0 40px 80px rgba(2,12,27,0.75),
+        0 8px 24px rgba(7,39,68,0.65);
     }
 
     .label{
@@ -160,4 +171,3 @@
   </script>
 </body>
 </html>
-
