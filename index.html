@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KEY DISPLAY</title>
+  <title>KEY DISPLAY mit Glass Card</title>
   <style>
     :root{
       --bg-1: #04102a;
@@ -52,28 +52,72 @@
       gap:15px;
     }
 
-    .card{
-      width:100%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px;
-      padding:38px 36px;
-      box-shadow:
-        0 30px 60px rgba(2,12,27,0.65),
-        0 6px 18px rgba(7,39,68,0.55);
-      border: 1px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(6px) saturate(120%);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-      text-align:center;
+    /* Glass Card Styles */
+    .glass-card {
+      width: 100%;
+      max-width: 320px;
+      height: 360px;
+      background: var(--glass);
+      backdrop-filter: blur(15px) saturate(120%);
+      -webkit-backdrop-filter: blur(15px) saturate(120%);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+        inset 0 0 40px 20px rgba(255, 255, 255, 0.4);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 20px;
+      margin: 0 auto;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
     }
 
-    .card:hover {
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .glass-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.8),
+        transparent,
+        rgba(255, 255, 255, 0.3)
+      );
+      pointer-events: none;
+    }
+
+    .glass-card:hover {
       transform: scale(1.05);
       box-shadow:
-        0 0 20px 6px rgba(121, 167, 255, 0.6),
+        0 0 20px 6px var(--accent),
         0 40px 80px rgba(2,12,27,0.75),
         0 8px 24px rgba(7,39,68,0.65);
     }
@@ -97,6 +141,7 @@
       font-weight:800;
       padding:6px 12px;
       border-radius:8px;
+      margin-top: 8px;
     }
 
     .sub{
@@ -137,7 +182,12 @@
     }
 
     @media (max-width:420px){
-      .card{padding:24px;border-radius:14px}
+      .glass-card{
+        max-width: 100%;
+        height: auto;
+        padding: 24px;
+        border-radius: 14px;
+      }
       .key{font-size:20px}
       .label{font-size:16px}
     }
@@ -147,7 +197,7 @@
   <div class="bg-pattern" aria-hidden="true"></div>
 
   <main class="card-wrap" role="main" aria-labelledby="key-title">
-    <section class="card" aria-live="polite">
+    <section class="glass-card" aria-live="polite">
       <div class="label" id="key-title">KEY IS:</div>
       <div class="key" id="the-key">NOTUSINGLINKVERTISE</div>
       <button class="btn" id="copyBtn" title="Copy">COPY</button>
@@ -155,7 +205,7 @@
     </section>
 
     <!-- Discord Logo mit Link -->
-    <a class="discord-link" href="https://discord.gg/CGhfrXQ3nw" target="_blank" title="Join our Discord">
+    <a class="discord-link" href="https://discord.gg/CGhfrXQ3nw" target="_blank" title="Join our Discord" aria-label="Join our Discord">
       <img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" alt="Discord Logo">
     </a>
   </main>
