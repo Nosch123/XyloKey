@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KEY DISPLAY mit Glass Card</title>
+  <title>KEY DISPLAY mit Nightsky Hintergrund</title>
   <style>
     :root{
       --bg-1: #04102a;
@@ -18,8 +18,9 @@
     html,body{height:100%}
     body{
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(9,30,60,0.6), transparent 5%),
-                  linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      /* Nachthimmel Hintergrund */
+      background: url('https://cdn.discordapp.com/attachments/1401143946502995990/1403765637221715979/nightsky.jpg') no-repeat center center fixed;
+      background-size: cover;
       color:var(--text);
       display:flex;
       align-items:center;
@@ -27,6 +28,17 @@
       padding:32px;
       gap:20px;
       min-height:100vh;
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Optional: leichte dunkle Overlay für bessere Lesbarkeit */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4,16,42,0.7), rgba(7,39,68,0.9));
+      z-index: -1;
     }
 
     .bg-pattern{
@@ -55,7 +67,7 @@
     /* Glass Card Styles */
     .glass-card {
       width: 100%;
-      max-width: 320px;
+      max-width: 480px; /* breiter */
       height: 360px;
       background: var(--glass);
       backdrop-filter: blur(15px) saturate(120%);
@@ -181,7 +193,7 @@
       transform: scale(1.15);
     }
 
-    @media (max-width:420px){
+    @media (max-width:480px){
       .glass-card{
         max-width: 100%;
         height: auto;
@@ -231,7 +243,6 @@
   </script>
 </body>
 </html>
-
 
 
 
