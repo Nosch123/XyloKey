@@ -124,3 +124,36 @@
   </script>
 </body>
 </html>
+
+<style>
+  .discord-button-fixed {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    color: var(--text, #eaf2ff);
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 9999;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .discord-button-fixed:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%) scale(1.05);
+  }
+</style>
+
+<a href="https://discord.gg/CGhfrXQ3nw" target="_blank" rel="noopener noreferrer" class="discord-button-fixed" aria-label="Discord Server beitreten">
+  Join Discord
+</a>
