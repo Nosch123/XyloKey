@@ -8,6 +8,7 @@
     :root {
       --accent: #79a7ff;
       --text: #eaf2ff;
+      --black: #000000;
     }
 
     * {
@@ -30,6 +31,7 @@
       color: var(--text);
       gap: 20px;
       padding: 20px;
+      position: relative;
     }
 
     .headline {
@@ -114,6 +116,7 @@
       font-size: 14px;
     }
 
+    /* Discord Button */
     .discord-button-fixed {
       position: fixed;
       bottom: 20px;
@@ -140,9 +143,31 @@
       background: rgba(255, 255, 255, 0.3);
       transform: translateX(-50%) scale(1.05);
     }
+
+    /* Neuer Status Text - fixiert rechts oben am Bildschirm */
+    .status-fixed {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 6px 12px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      user-select: none;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      z-index: 10000;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    }
+
   </style>
 </head>
 <body>
+  <div class="status-fixed">Status: WORKING</div>
+
   <div class="headline">
     XYLO HUB | 100% FREE and COMMUNITY DRIVEN
   </div>
